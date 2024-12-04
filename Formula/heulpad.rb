@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.11.tar.gz"
-  sha256 "7e1dfd3d11e54a9478f25731381c802994ec9a37019aa856bd14deca19353e43"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.12.tar.gz"
+  sha256 "db6e02d2265782a2845afee07b0218fef9d75051dcb20ccf23188f851e79b379"
   license "MIT"
 
   depends_on "cmake" => :build
@@ -12,14 +12,23 @@ class Heulpad < Formula
     system "cmake", "--build", "build"
     bin.install "build/heulpad"
 
-    home_dir = ENV["HOME"]
-    heulpad_dir = "#{home_dir}/.heulpad"
-    system "mkdir", "-p", heulpad_dir
-    system "chmod", "700", heulpad_dir
+    (pkgshare/".config").write <<~EOS
+      version=0.0.1
+      author=RUMPO
+    EOS
+    
+    (pkgshare/"data").mkpath
+  end
+
+  def caveats
+    <<~EOS
+      Configuration files are installed to:
+      #{pkgshare}
+    EOS
   end
 
   test do
     system "#{bin}/heulpad", "--version"
-    assert_predicate File.directory?(File.join(ENV["HOME"], ".heulpad"))
+assert_predicate pkgshare/".config", :exist?
   end
 end
