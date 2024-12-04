@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.9.99.tar.gz"
-  sha256 "d05116e67d9cd36d728873f8171693bfa4a137e3345c9d0ca2da1670dfafcf3e"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.10.1.tar.gz"
+  sha256 "03a2c0febcf8a731107478791c221d1d387c44c9de0d7c4530dc9784001fd297"
   license "MIT"
 
   depends_on "cmake" => :build
@@ -15,15 +15,6 @@ class Heulpad < Formula
     heulpad_dir = Pathname.new(File.join(Dir.home, ".heulpad"))
     heulpad_dir.mkpath
     system "chmod", "700", heulpad_dir.to_s
-  end
-
-  def caveats
-    <<~EOS
-      User configuration data is stored in ~/.heulpad
-      
-      To completely remove all data after uninstalling:
-        rm -rf ~/.heulpad
-    EOS
   end
 
   test do
