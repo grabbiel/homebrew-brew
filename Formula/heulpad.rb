@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.idk.tar.gz"
-  sha256 "b0170ed3f26f98f5d11d268d34a0d23e4ed26753a8274bbe327f2c9e679b1f94"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.10.tar.gz"
+  sha256 "ccc4c70599176ba7f0d4aabe1fed4930542a27364dffcff56b15b4d90bc8a106"
   license "MIT"
 
   depends_on "cmake" => :build
