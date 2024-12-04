@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.10.tar.gz"
-  sha256 "ccc4c70599176ba7f0d4aabe1fed4930542a27364dffcff56b15b4d90bc8a106"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.9.99.tar.gz"
+  sha256 "d05116e67d9cd36d728873f8171693bfa4a137e3345c9d0ca2da1670dfafcf3e"
   license "MIT"
 
   depends_on "cmake" => :build
@@ -11,11 +11,10 @@ class Heulpad < Formula
     system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Release", *std_cmake_args
     system "cmake", "--build", "build"
     bin.install "build/heulpad"
-  end
 
-  def post_install
-    Pathname.new(File.join(Dir.home, ".heulpad")).mkpath
-    system "chmod", "700", File.join(Dir.home, ".heulpad")
+    heulpad_dir = Pathname.new(File.join(Dir.home, ".heulpad"))
+    heulpad_dir.mkpath
+    system "chmod", "700", heulpad_dir.to_s
   end
 
   def caveats
