@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.15.tar.gz"
-  sha256 "b0dab0e13ce754256cbe7df65596d6b1706ddb37b0abb86a446c6a4e2a5cb2a6"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.16.tar.gz"
+  sha256 "88ed66b85d8ea7772e4aa34760f411f99a1e9b5e59f2136989470788172504f6"
   license "MIT"
 
   depends_on "cmake" => :build
@@ -12,6 +12,11 @@ class Heulpad < Formula
     system "cmake", "--build", "build"
     bin.install "build/heulpad"
 
+    mv bin/"heulpad", bin/"heulpad.real"
+
+    (bin/"heulpad").write_env_script bin/"heulpad.real",
+      HEULPAD_CONFIG: "#{etc}/heulpad/config"
+
     (etc/"heulpad").mkpath
     unless (etc/"heulpad/config").exist?
       (etc/"heulpad/config").write <<~EOS
@@ -20,7 +25,6 @@ class Heulpad < Formula
         auto_backup=true
       EOS
     end
-    
   end
 
   def caveats
@@ -32,6 +36,6 @@ class Heulpad < Formula
 
   test do
     system "#{bin}/heulpad", "--version"
-assert_predicate etc/"heulpad/config", :exist?
+    assert_predicate etc/"heulpad/config", :exist?
   end
 end
