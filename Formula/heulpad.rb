@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.10.1.tar.gz"
-  sha256 "03a2c0febcf8a731107478791c221d1d387c44c9de0d7c4530dc9784001fd297"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.11.tar.gz"
+  sha256 "7e1dfd3d11e54a9478f25731381c802994ec9a37019aa856bd14deca19353e43"
   license "MIT"
 
   depends_on "cmake" => :build
@@ -12,13 +12,14 @@ class Heulpad < Formula
     system "cmake", "--build", "build"
     bin.install "build/heulpad"
 
-    heulpad_dir = Pathname.new(File.join(Dir.home, ".heulpad"))
-    heulpad_dir.mkpath
-    system "chmod", "700", heulpad_dir.to_s
+    home_dir = ENV["HOME"]
+    heulpad_dir = "#{home_dir}/.heulpad"
+    system "mkdir", "-p", heulpad_dir
+    system "chmod", "700", heulpad_dir
   end
 
   test do
     system "#{bin}/heulpad", "--version"
-    assert_predicate Pathname.new(File.join(Dir.home, ".heulpad")), :directory?
+    assert_predicate File.directory?(File.join(ENV["HOME"], ".heulpad"))
   end
 end
