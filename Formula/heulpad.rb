@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.7.tar.gz"
-  sha256 "a963e16283b1b84cbff3eb58372d6c5e6b069a429a4297302c9abbff328c89a2"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.8.tar.gz"
+  sha256 "1454eb625389d7bf8ce4ea87e1a4bdd45fb0abb74c7030010a94e55a0c50a601"
   license "MIT"
 
   uses_from_macos "curl"
@@ -13,7 +13,9 @@ class Heulpad < Formula
     system "cmake", "--build", "build"
     
     bin.install "build/heulpad"
-    bin.install Dir["build/src/commands/**/heulpad-*"]
+    libexec.install Dir["build/src/commands/**/heulpad-*"]
+
+    chmod 0755, Dir[libexec/"heulpad-*"]
 
     mv bin/"heulpad", bin/"heulpad.real"
 
@@ -38,7 +40,8 @@ class Heulpad < Formula
     (bin/"heulpad").write_env_script bin/"heulpad.real",
       HEULPAD_CONFIG: "#{etc}/heulpad/config",
       HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
-      HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list"
+      HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list",
+      HEULPAD_LIBEXEC: libexec
      
     # Create default config
     unless (etc/"heulpad/config").exist?
