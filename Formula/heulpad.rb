@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.4.tar.gz"
-  sha256 "8c7354bde4ff6fc6b03f2bedb9a17e9a6b89420a624ac901c18ef23ca447d197"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.5.tar.gz"
+  sha256 "7bed75d03949a308d5e819df22044e9504a19eb655c990040c6ff5be8e1befb5"
   license "MIT"
 
   uses_from_macos "curl"
@@ -51,7 +51,9 @@ class Heulpad < Formula
       Plugins: #{var}/heulpad/plugins
       Plugins Registry: #{share}/heulpad/plugins.list
 
-      Note: Uninstalling will remove all plugins
+      To completely remove all data after uninstalling:
+        rm -rf #{var}/heulpad
+        rm -rf #{etc}/heulpad
     EOS
   end
 
