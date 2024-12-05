@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.5.tar.gz"
-  sha256 "7bed75d03949a308d5e819df22044e9504a19eb655c990040c6ff5be8e1befb5"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.6.tar.gz"
+  sha256 "1d0bba12357ea6ef61e45df93a9a3584fc01c9e8f5ee1b9469421fee7c7ada8c"
   license "MIT"
 
   uses_from_macos "curl"
@@ -11,7 +11,9 @@ class Heulpad < Formula
   def install
     system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Release", *std_cmake_args
     system "cmake", "--build", "build"
+    
     bin.install "build/heulpad"
+    bin.install Dir["build/src/commands/**/heulpad-*"]
 
     mv bin/"heulpad", bin/"heulpad.real"
 
@@ -23,6 +25,13 @@ class Heulpad < Formula
     # Create plugins registry file
     (share/"heulpad/plugins.list").write <<~EOS
       cloud
+    EOS
+
+    # Create Help file
+    (share/"heulpad/help.txt").write <<~EOS
+      enable: Enable and install plugin
+      disable: Disable an installed plugin
+      new: Initialize project in current directory
     EOS
 
     # Create wrapper with environment variables 
