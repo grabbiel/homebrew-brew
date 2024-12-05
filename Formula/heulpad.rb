@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.3.tar.gz"
-  sha256 "1c2438eb3f74bc9c90cd4c09e04cfa02bbcb7c5493db72ee59e99673026a8879"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.4.tar.gz"
+  sha256 "8c7354bde4ff6fc6b03f2bedb9a17e9a6b89420a624ac901c18ef23ca447d197"
   license "MIT"
 
   uses_from_macos "curl"
@@ -41,11 +41,17 @@ class Heulpad < Formula
     end
   end
 
+  def post_uninstall
+    rm_rf var/"heulpad/plugins"
+  end
+
   def caveats
     <<~EOS
       Configuration: #{etc}/heulpad/config
       Plugins: #{var}/heulpad/plugins
       Plugins Registry: #{share}/heulpad/plugins.list
+
+      Note: Uninstalling will remove all plugins
     EOS
   end
 
