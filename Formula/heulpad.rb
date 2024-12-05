@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.2.tar.gz"
-  sha256 "a4eeedb62bd4c65a361247a0bd247b3fe329e47074237e1cb38b4189a36bcb7a"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.3.tar.gz"
+  sha256 "1c2438eb3f74bc9c90cd4c09e04cfa02bbcb7c5493db72ee59e99673026a8879"
   license "MIT"
 
   uses_from_macos "curl"
@@ -28,7 +28,7 @@ class Heulpad < Formula
     # Create wrapper with environment variables 
     (bin/"heulpad").write_env_script bin/"heulpad.real",
       HEULPAD_CONFIG: "#{etc}/heulpad/config",
-      HEULPAD_PLUGINS: "#{var}/heulpad/plugins"
+      HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
       HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list"
      
     # Create default config
