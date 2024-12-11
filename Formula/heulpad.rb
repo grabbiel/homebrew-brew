@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.29.tar.gz"
-  sha256 "43800ee9d3f00a117068a67386c4beb3c510755503d440ea232222fb4c9c5da2"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.30.tar.gz"
+  sha256 "1b6b82a57e89a00bef7a0e3b0e9c8bc6f5171b8ad8d63730e98e67005ae0e9a1"
   license "MIT"
 
   uses_from_macos "curl"
