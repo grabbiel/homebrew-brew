@@ -1,8 +1,8 @@
 class Heulpad < Formula
   desc "Manage content from inside the terminal"
   homepage "https://github.com/grabbiel/heulpad"
-  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.21.tar.gz"
-  sha256 "232e4cc9e40ac4e74c5a7762c0277a91664151ebefdb4076697b5fe246a4070f"
+  url "https://github.com/grabbiel/heulpad/archive/refs/tags/v0.0.22.tar.gz"
+  sha256 "23b7754d8cb6647b6ca0a0db148749ade5ab0f34f91913852b56140d4a4fb031"
   license "MIT"
 
   uses_from_macos "curl"
@@ -43,6 +43,7 @@ class Heulpad < Formula
       HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
       HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list",
       HEULPAD_LIBEXEC: libexec
+      HEULPAD_SHARE: "#{share}"
      
     # Create default config
     unless (etc/"heulpad/config").exist?
